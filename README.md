@@ -1,4 +1,10 @@
 
+![image](https://github.com/molla202/Entrypoint-pubtest-2/assets/91562185/8e722930-ad7e-481e-b0ce-67bc162a5f19)
+
+![image](https://github.com/molla202/Entrypoint-pubtest-2/assets/91562185/6e40a76c-4e5e-4058-a0f4-fd6a0edf349f)
+
+
+
 
 
 ### Update ve gereklilikler
