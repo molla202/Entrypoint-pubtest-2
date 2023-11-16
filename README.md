@@ -1,3 +1,4 @@
+<h1 align="center"> Entrypoint-pubtest-2 </h1>
 
 ![image](https://github.com/molla202/Entrypoint-pubtest-2/assets/91562185/8e722930-ad7e-481e-b0ce-67bc162a5f19)
 
@@ -5,6 +6,19 @@
 
 
 
+ * [Topluluk kanalımız](https://t.me/corenodechat)<br>
+ * [Topluluk Twitter](https://twitter.com/corenodeHQ)<br>
+ * [Entrypoint Website](https://entrypoint.zone/)<br>
+ * [Blockchain Explorer](https://testnet.itrocket.net/entrypoint/staking)<br>
+ * [Discord](https://discord.gg/dWccn5wK)<br>
+ * [Twitter](https://twitter.com/entrypointzone)<br>
+
+## Sistem Gereksinimleri
+| Bileşenler | Minimum Gereksinimler | 
+| ------------ | ------------ |
+| CPU |	4|
+| RAM	| 8+ GB |
+| Storage	| 400 GB SSD |
 
 
 ### Update ve gereklilikler
