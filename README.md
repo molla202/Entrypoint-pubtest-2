@@ -13,7 +13,7 @@
  * [Discord](https://discord.gg/dWccn5wK)<br>
  * [Twitter](https://twitter.com/entrypointzone)<br>
 
-## Sistem Gereksinimleri
+## 💻 Sistem Gereksinimleri
 | Bileşenler | Minimum Gereksinimler | 
 | ------------ | ------------ |
 | CPU |	4|
@@ -21,12 +21,12 @@
 | Storage	| 400 GB SSD |
 
 
-### Update ve gereklilikler
+### 🚧Update ve gereklilikler
 ```
 sudo apt update && sudo apt upgrade -y
 sudo apt install curl git wget htop tmux build-essential jq make lz4 gcc unzip -y
 ```
-### Go kurulumu
+### 🚧Go kurulumu
 ```
 cd $HOME
 ! [ -x "$(command -v go)" ] && {
@@ -41,7 +41,7 @@ source $HOME/.bash_profile
 }
 [ ! -d ~/go/bin ] && mkdir -p ~/go/bin
 ```
-### Varyasyonlar
+### 🚧Varyasyonlar
 Not: cüzdan adı ve moniker adınızı yazınız
 ```
 echo "export WALLET="cüzdan-adı"" >> $HOME/.bash_profile
@@ -50,7 +50,7 @@ echo "export ENTRY_CHAIN_ID="entrypoint-pubtest-2"" >> $HOME/.bash_profile
 echo "export ENTRY_PORT="34"" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
-### Dosyaları çekiyoruz
+### 🚧Dosyaları çekiyoruz
 ```
 cd $HOME
 mkdir -p $HOME/entrypoint && cd entrypoint
@@ -58,25 +58,25 @@ wget https://github.com/entrypoint-zone/testnets/releases/download/v1.1.1/entryp
 chmod +x entrypointd-v1.1.1-linux-amd64
 mv entrypointd-v1.1.1-linux-amd64 $HOME/go/bin/entrypointd
 ```
-### init işlemi
+### 🚧init işlemi
 ```
 entrypointd config node tcp://localhost:${ENTRY_PORT}657
 entrypointd config keyring-backend os
 entrypointd config chain-id entrypoint-pubtest-2
 entrypointd init "$MONIKER" --chain-id entrypoint-pubtest-2
 ```
-### Genesis ve adressbook indirelim
+### 🚧Genesis ve adressbook indirelim
 ```
 wget -O $HOME/.entrypoint/config/genesis.json https://testnet-files.itrocket.net/entrypoint/genesis.json
 wget -O $HOME/.entrypoint/config/addrbook.json https://testnet-files.itrocket.net/entrypoint/addrbook.json
 ```
-### Seed ve peer
+### 🚧Seed ve peer
 ```
 SEEDS="e1b2eddac829b1006eb6e2ddbfc9199f212e505f@entrypoint-testnet-seed.itrocket.net:34656"
 PEERS="7048ee28300ffa81103cd24b2af3d1af0c378def@entrypoint-testnet-peer.itrocket.net:34656,e0bf0782c0fc1ee550d2eed0de66b0b1825776ab@167.235.39.5:46656,81bf2ade773a30eccdfee58a041974461f1838d8@185.107.68.148:26656,85945c3aa71634f2d9d227710c62722f71dcc528@65.109.53.60:29656,a1583f1ba0f0f8b91bd163110b0bfd709604b266@65.108.206.118:61256,219c01207e171cde99fed5ae4dff1b26d3ca0ad8@95.217.100.248:06656,75e83d67504cbfacdc79da55ca46e2c4353816e7@65.109.92.241:3106,d57c7572d58cb3043770f2c0ba412b35035233ad@80.64.208.169:26656,ffbffb5bed1c8efcf6280ab1635f3eab6cfcf1b4@207.244.253.244:28656,12fb65ddbc028eebdb3d61a96b3784f5f5f31472@[2a01:4f9:3051:3e83::2]:22256,bbf8ef70a32c3248a30ab10b2bff399e73c6e03c@65.21.198.100:20956"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.entrypoint/config/config.toml
 ```
-### Port ayarı app.toml
+### 🚧Port ayarı app.toml
 ```
 sed -i.bak -e "s%:1317%:${ENTRY_PORT}317%g;
 s%:8080%:${ENTRY_PORT}080%g;
@@ -86,7 +86,7 @@ s%:8545%:${ENTRY_PORT}545%g;
 s%:8546%:${ENTRY_PORT}546%g;
 s%:6065%:${ENTRY_PORT}065%g" $HOME/.entrypoint/config/app.toml
 ```
-### Port ayarı config.toml
+### 🚧Port ayarı config.toml
 ```
 sed -i.bak -e "s%:26658%:${ENTRY_PORT}658%g;
 s%:26657%:${ENTRY_PORT}657%g;
@@ -95,19 +95,19 @@ s%:26656%:${ENTRY_PORT}656%g;
 s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${ENTRY_PORT}656\"%;
 s%:26660%:${ENTRY_PORT}660%g" $HOME/.entrypoint/config/config.toml
 ```
-### Puring
+### 🚧Puring
 ```
 sed -i -e "s/^pruning *=.*/pruning = \"nothing\"/" $HOME/.entrypoint/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"100\"/" $HOME/.entrypoint/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"50\"/" $HOME/.entrypoint/config/app.toml
 ```
-### Ayar minimum gas price,  prometheus ve indexing
+### 🚧Ayar minimum gas price,  prometheus ve indexing
 ```
 sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0.01ibc/8A138BC76D0FB2665F8937EC2BF01B9F6A714F6127221A0E155106A45E09BCC5"|g' $HOME/.entrypoint/config/app.toml
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.entrypoint/config/config.toml
 sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.entrypoint/config/config.toml
 ```
-### Servis dosyası oluşturuyoruz
+### 🚧Servis dosyası oluşturuyoruz
 ```
 sudo tee /etc/systemd/system/entrypointd.service > /dev/null <<EOF
 [Unit]
@@ -124,7 +124,7 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
-### Snap
+### 🚧Snap
 ```
 entrypointd tendermint unsafe-reset-all --home $HOME/.entrypoint
 if curl -s --head curl https://testnet-files.itrocket.net/entrypoint/snap_entrypoint.tar.lz4 | head -n 1 | grep "200" > /dev/null; then
@@ -133,14 +133,14 @@ if curl -s --head curl https://testnet-files.itrocket.net/entrypoint/snap_entryp
   echo no have snap
 fi
 ```
-### Başlatalım
+### 🏠Başlatalım
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable entrypointd
 sudo systemctl restart entrypointd
 sudo journalctl -u entrypointd -fo cat
 ```
-### Cüzdan oluşturalım
+### 👉Cüzdan oluşturalım
 ```
 entrypointd keys add $WALLET
 ```
@@ -148,7 +148,7 @@ YADA import edelim
 ```
 entrypointd keys add $WALLET --recover
 ```
-### Valiator
+### 🏆Valiator
 ```
 entrypointd tx staking create-validator \
 --amount 1000000uentry \
