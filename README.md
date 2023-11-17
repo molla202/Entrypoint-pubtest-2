@@ -42,7 +42,7 @@ source $HOME/.bash_profile
 [ ! -d ~/go/bin ] && mkdir -p ~/go/bin
 ```
 ### 🚧Varyasyonlar
-Not: cüzdan adı ve moniker adınızı yazınız
+✏️Not: cüzdan adı ve moniker adınızı yazınız
 ```
 echo "export WALLET="cüzdan-adı"" >> $HOME/.bash_profile
 echo "export MONIKER="node-adı"" >> $HOME/.bash_profile
