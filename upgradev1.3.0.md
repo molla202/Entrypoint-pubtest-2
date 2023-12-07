@@ -8,3 +8,4 @@ chmod +x entrypointd
 sudo mv $HOME/entrypointd $(which entrypointd)
 sudo systemctl restart entrypointd && sudo journalctl -u entrypointd -fo cat
 ```
+
